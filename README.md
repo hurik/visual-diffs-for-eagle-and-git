@@ -4,10 +4,12 @@
 If you are working on an [CadSoft EAGLE](http://www.cadsoftusa.com/eagle-pcb-design-software/) project with a team and you are tracking your progress with [Git](http://git-scm.com/), this little programm can help you to see what your team has changed. It makes an diff image which shows the changes on the schematics and boards between the commits.
 
 But first some notes:
+* Tested under Windows and Linux (Ubuntu).
+* Schematics and Boards must always have different names, also when they are in different directories.
+* The files are not allowed to have spaces in their name.
 * This my first ruby programm. It is very, very ugly written.
 * It's very slow! For every diff image it takes about one minute. But when only one commit is new, it only makes diff images for the new commit.
 * Sorry for my bad English!
-* Only tested it under Windows.
 * **Every help is welcome and appreciated!**
 
 You can test it with the [testrepo](https://github.com/hurik/visual-diffs-for-eagle-and-git_testrepo).
@@ -20,7 +22,9 @@ He made the countSheets.ulp file and most of the code is from him, but i didn't 
 **grit**
 > gem install grit
 
-Under windows you need the [Development Kit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit).
+grit is a native extension:
+* Under windows you need the [Development Kit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit) to install it.
+* Under linux you need the ruby-dev package.
 
 **chunky_png**
 > gem install chunky_png
@@ -49,5 +53,8 @@ Under windows you need the [Development Kit](https://github.com/oneclick/rubyins
 
 
 ## Changelog
+#### v0.1.1
+* Now it is proccessing files in subfolders
+
 ### v0.1.0
 * First commit

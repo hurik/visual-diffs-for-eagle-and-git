@@ -1,7 +1,7 @@
 # visual-diffs-for-eagle-and-git
 # https://github.com/hurik/visual-diffs-for-eagle-and-git
 #
-# v0.1.0
+# v0.1.1
 #
 # Created by Andreas Giemza on 2012-06-14.
 #
@@ -39,12 +39,15 @@ def parseTree(tree)
 	            	`#{@eaglePath} -C 'EXPORT IMAGE #{@commitPath}/#{content.name}.png 150; QUIT' #{temp_data}`
 	            else
 	            	sheetCount.times do |i|
-	            	`#{@eaglePath} -C 'EDIT .s#{i+1}; EXPORT IMAGE #{@commitPath}/#{content.name}_#{i+1}.png 150; QUIT' #{temp_data}`
+	            	`#{@eaglePath} -C "EDIT .s#{i+1}; EXPORT IMAGE #{@commitPath}/#{content.name}_#{i+1}.png 150; QUIT" #{temp_data}`
 	            	end
 	            end
 
             	File.delete(temp_data)
 			end
+		end
+		if content.kind_of? Grit::Tree
+			parseTree(content)
 		end
 	end
 end
