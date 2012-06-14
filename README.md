@@ -8,7 +8,6 @@ But first some notes:
 * Schematics and Boards must always have different names, also when they are in different directories.
 * The files are not allowed to have spaces in their name.
 * This my first ruby programm. It is very, very ugly written.
-* It's very slow! For every diff image it takes about one minute. But when only one commit is new, it only makes diff images for the new commit.
 * Sorry for my bad English!
 * **Every help is welcome and appreciated!**
 
@@ -22,12 +21,12 @@ He made the countSheets.ulp file and most of the code is from him, but i didn't 
 **grit**
 > gem install grit
 
-grit is a native extension:
+**oily_png**
+> gem install oily_png
+
+**Both gems are native extension:**
 * Under windows you need the [Development Kit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit) to install it.
 * Under linux you need the ruby-dev package.
-
-**chunky_png**
-> gem install chunky_png
 
 
 ## Usage
@@ -53,6 +52,9 @@ grit is a native extension:
 
 
 ## Changelog
+#### v0.1.2
+* Massiv speedup with oily_png. Now about 14 times faster!
+
 #### v0.1.1
 * Now it is proccessing files in subfolders
 

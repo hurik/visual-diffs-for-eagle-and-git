@@ -1,7 +1,7 @@
 # visual-diffs-for-eagle-and-git
 # https://github.com/hurik/visual-diffs-for-eagle-and-git
 #
-# v0.1.1
+# v0.1.2
 #
 # Created by Andreas Giemza on 2012-06-14.
 #
@@ -9,7 +9,7 @@
 #           http://jeffkreeftmeijer.com/2011/comparing-images-and-creating-image-diffs/
 
 require 'grit'
-require 'chunky_png'
+require 'oily_png'
 include ChunkyPNG::Color
 
 # Oprions
