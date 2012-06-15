@@ -17,6 +17,14 @@ This little programm based on [eagle-converter](https://gitorious.org/gitedaous/
 He made the countSheets.ulp file and most of the code is from him, but i didn't get his code running and so I made my own programm.
 
 
+# Example image
+![Example image](/hurik/visual-diffs-for-eagle-and-git/raw/master/example.png)
+* Brightened elements were not changed
+* Red elements were deleted
+* Green elements are new
+* Red and green elements which are connected, can be moved elements
+
+
 # Requirements
 **grit**
 > gem install grit
@@ -36,14 +44,11 @@ He made the countSheets.ulp file and most of the code is from him, but i didn't 
 
 
 ## TODO
-* Improve code
-* Improve speed
+* **Improve code**
+* Improve speed more
 * Improve folder structure
 * Improve file naming
 * Improve diff images
-    * Removed elements should be red
-    * Added elements should be green
-    * Unchanged elements should be shown with half opaque 
     * Board diffs are very ugly ...
 * Improve comments
 * Improve programm output
@@ -51,7 +56,20 @@ He made the countSheets.ulp file and most of the code is from him, but i didn't 
 * Add a gui
 
 
+## DONE
+* Improve speed (v0.1.2)
+* Improve diff images (v0.1.3)
+    * Removed elements should be red (v0.1.3)
+    * Added elements should be green (v0.1.3)
+    * Unchanged elements should be brightened (v0.1.3)
+
+
 ## Changelog
+#### v0.1.3
+* Highly improved diff images
+* Fixed little bug with image size
+* Example image added
+
 #### v0.1.2
 * Massiv speedup with oily_png. Now about 14 times faster!
 

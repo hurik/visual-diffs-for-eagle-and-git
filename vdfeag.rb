@@ -1,7 +1,7 @@
 # visual-diffs-for-eagle-and-git
 # https://github.com/hurik/visual-diffs-for-eagle-and-git
 #
-# v0.1.2
+# v0.1.3
 #
 # Created by Andreas Giemza on 2012-06-14.
 #
@@ -130,21 +130,22 @@ loop do
 							  ChunkyPNG::Image.from_file("#{commitPath2}/#{file}")
 							]
 
-							output = ChunkyPNG::Image.new(images.first.width, images.last.width, WHITE)
-
-							diff = []
+							output = ChunkyPNG::Image.new(images.first.width, images.first.height, WHITE)
 
 							images.first.height.times do |y|
 							  images.first.row(y).each_with_index do |pixel, x|
-							    unless pixel == images.last[x,y]
-							      score = Math.sqrt(
-							        (r(images.last[x,y]) - r(pixel)) ** 2 +
-							        (g(images.last[x,y]) - g(pixel)) ** 2 +
-							        (b(images.last[x,y]) - b(pixel)) ** 2
-							      ) / Math.sqrt(MAX ** 2 * 3)
-
-							      output[x,y] = grayscale(MAX - (score * MAX).round)
-							      diff << score
+							    if pixel == images.last[x,y]
+							      if pixel == WHITE
+							        next
+							      else
+							        output[x,y] = interpolate_quick(pixel, WHITE, 80)
+							      end
+							    elsif pixel == WHITE
+							      output[x,y] = :green
+							    elsif images.last[x,y] == WHITE
+							      output[x,y] = :red
+							    else
+							      output[x,y] = :grey
 							    end
 							  end
 							end
