@@ -1,9 +1,9 @@
 # visual-diffs-for-eagle-and-git
 # https://github.com/hurik/visual-diffs-for-eagle-and-git
 #
-# v0.2.1
+# v0.2.2
 #
-# Created by Andreas Giemza on 2012-06-18.
+# Created by Andreas Giemza on 2012-06-19.
 #
 # Based on: https://gitorious.org/gitedaous/eagle-converter
 #           http://jeffkreeftmeijer.com/2011/comparing-images-and-creating-image-diffs/
@@ -147,7 +147,7 @@ commitCounter = 0
 
 parse = false
 
-repo.commits(repoBranch).reverse_each do |commit|
+repo.commits(repoBranch, false).reverse_each do |commit|
   commitCounter += 1
 
   if (firstCommitHash == "" or firstCommitHash == commit.id) and parse == false

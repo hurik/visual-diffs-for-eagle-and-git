@@ -37,7 +37,7 @@ This little programm based on [eagle-converter](https://gitorious.org/gitedaous/
 
 
 ## Usage
-1. Open the vdfeag.rb file and set the repoPath, repoBranch and @eaglePath.
+1. Open the vdfeag.rb file and set the repoPath, repoBranch, @eaglePath and firstCommitHash.
 1. Start the file!
 1. After some time your find the diff images under diff for each file in the repo.
 1. When a new commit was added, you can rerun the programm and it's only makes the diff images for the new commit.
@@ -63,6 +63,9 @@ This little programm based on [eagle-converter](https://gitorious.org/gitedaous/
 
 
 ## Changelog
+#### v0.2.2
+* **Fixed the problem that it was only parsing the last 10 commits**
+
 #### v0.2.1
 * **Added the possibility to set an commit hash, as first commit to parse** (In the project I'm working on, we have a lot of commits where we only are adding lib for the elements ...)
 
