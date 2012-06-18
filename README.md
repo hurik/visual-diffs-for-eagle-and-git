@@ -4,16 +4,16 @@
 If you are working on an [CadSoft EAGLE](http://www.cadsoftusa.com/eagle-pcb-design-software/) project with a team and you are tracking your progress with [Git](http://git-scm.com/), this little programm can help you to see what your team has changed. It makes an diff image which shows the changes on the schematics and boards between the commits.
 
 But first some notes:
-* Tested under Windows and Linux (Ubuntu).
-* The files are not allowed to have spaces in their name.
+* **The files are not allowed to have spaces in their name.**
+* **The first commit has the number 1, the last commit has the highest number!**
 * This my first ruby programm. It is very, very ugly written.
+* Tested under Windows and Linux (Ubuntu).
 * Sorry for my bad English!
 * **Every help is welcome and appreciated!**
 
 You can test it with the [testrepo](https://github.com/hurik/visual-diffs-for-eagle-and-git_testrepo).
 
-This little programm based on [eagle-converter](https://gitorious.org/gitedaous/eagle-converter) by Patrick Franken.
-He made the countSheets.ulp file and most of the code is from him, but i didn't get his code running and so I made my own programm.
+This little programm based on [eagle-converter](https://gitorious.org/gitedaous/eagle-converter) by Patrick Franken. He made the countSheets.ulp file and most of the code is from him, but i didn't get his code running and so I made my own programm.
 
 
 # Example image
@@ -47,6 +47,8 @@ He made the countSheets.ulp file and most of the code is from him, but i didn't 
 
 ## TODO
 * Important fixes/improvements
+	* **Memory should be released after generating the diff image**
+	* **Make a diff image of the current working directory**
 	* Allow spaces in filenames and folders
 	* Improve board diffs (Not sure if it should make images of all layers)
 	* Only make an diff image if there was a change (That would safe some time)
@@ -61,11 +63,14 @@ He made the countSheets.ulp file and most of the code is from him, but i didn't 
 
 
 ## Changelog
+#### v0.2.1
+* **Added the possibility to set an commit hash, as first commit to parse** (In the project I'm working on, we have a lot of commits where we only are adding lib for the elements ...)
+
 ### v0.2.0
 * **Subfolders are now included in the name (Files with same name in different folders are now working)**
 * **Diff images now working when the images size is not the same**
 * Code was cleaned a lot
-* Programm output now without useless information
+* Programm output a little better
 * Improved folder structure
 * Improve file naming
 

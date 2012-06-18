@@ -1,9 +1,9 @@
 # visual-diffs-for-eagle-and-git
 # https://github.com/hurik/visual-diffs-for-eagle-and-git
 #
-# v0.2.0
+# v0.2.1
 #
-# Created by Andreas Giemza on 2012-06-17.
+# Created by Andreas Giemza on 2012-06-18.
 #
 # Based on: https://gitorious.org/gitedaous/eagle-converter
 #           http://jeffkreeftmeijer.com/2011/comparing-images-and-creating-image-diffs/
@@ -16,6 +16,8 @@ include ChunkyPNG::Color
 repoPath = "e:/visual-diffs-for-eagle-and-git_testrepo"
 repoBranch = "master"
 @eaglePath = "c:/Programme/EAGLE-6.1.0/bin/eagle.exe"
+firstCommitHash = "a40b10cd466a09660f3c324e03216301073a5b1c"
+# Set firstCommitHash = "" to parse all commits
 
 # Checks if a directory exists and when not, it creates it
 def createDirectory(path)
@@ -143,15 +145,23 @@ repo = Grit::Repo.new(repoPath)
 
 commitCounter = 0
 
+parse = false
+
 repo.commits(repoBranch).reverse_each do |commit|
   commitCounter += 1
 
-  @commitPath = @commitImagesPath + "/#{commitCounter}"
+  if (firstCommitHash == "" or firstCommitHash == commit.id) and parse == false
+    parse = true
+  end
 
-  if !File.directory? (@commitPath)
-    puts "Parsing tree #{commit.id}"
-    createDirectory(@commitPath)
-    parseTree(commit.tree, "")
+  if parse
+    @commitPath = @commitImagesPath + "/#{commitCounter}"
+
+    if !File.directory? (@commitPath)
+      puts "Parsing tree #{commit.id}"
+      createDirectory(@commitPath)
+      parseTree(commit.tree, "")
+    end
   end
 end
 
@@ -160,13 +170,9 @@ puts "Done!"
 puts "\nDiff images"
 puts "-----------\n"
 
-commitCounter = 0
-
 loop do
-  commitCounter += 1
-
-  commitPath1 = "#{@commitImagesPath}/#{commitCounter}"
-  commitPath2 = "#{@commitImagesPath}/#{commitCounter+1}"
+  commitPath1 = "#{@commitImagesPath}/#{commitCounter-1}"
+  commitPath2 = "#{@commitImagesPath}/#{commitCounter}"
 
   if File.directory? (commitPath1) and File.directory? (commitPath2)
     for file in Dir.entries(commitPath1)
@@ -176,10 +182,10 @@ loop do
 
         createDirectory(diffImageFolder)
 
-        diffImageFile = "#{diffImageFolder}/#{commitCounter}_#{commitCounter+1}_#{file}"
+        diffImageFile = "#{diffImageFolder}/#{commitCounter-1}_#{commitCounter}_#{file}"
 
         if !File.exist? (diffImageFile)
-          puts "Creating diff image: #{commitCounter}_#{commitCounter+1}_#{file}"
+          puts "Creating diff image: #{commitCounter-1}_#{commitCounter}_#{file}"
 
           createDiffImage("#{commitPath1}/#{file}", "#{commitPath2}/#{file}", diffImageFile)
         end
@@ -188,6 +194,8 @@ loop do
   else
     break
   end
+
+  commitCounter -= 1
 end
 
 puts "Done!"
